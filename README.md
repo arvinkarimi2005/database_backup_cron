@@ -28,12 +28,12 @@ database types:
 
 4- modify crontab to run script
 ```
-0 3 * * *  /bin/bash -c "/home/backup_user/backup.sh -p -h 172.20.1.12 -d reyhoon_production"
-0 4 * * *  /bin/bash -c "/home/backup_user/backup.sh -p -h 172.20.1.3 -d alopeyk-integration"
-10 4 * * *  /bin/bash -c "/home/backup_user/backup.sh -p -h 172.20.1.18 -d bi"
+0 3 * * *  /bin/bash -c "/home/backup_user/backup.sh -p -h 172.20.1.12 -d db"
+0 4 * * *  /bin/bash -c "/home/backup_user/backup.sh -p -h 172.20.1.3 -d anotherdb"
+10 4 * * *  /bin/bash -c "/home/backup_user/backup.sh -p -h 172.20.1.18 -d another_postgres_db"
 30 4 * * *  /bin/bash -c "/home/backup_user/backup.sh -p -h 172.20.1.18 -d defaultdb"
-0 5 * * *  /bin/bash -c "/home/backup_user/backup.sh -m -h 172.20.1.16 -d reviews"
-30 3 * * *  /bin/bash -c "/home/backup_user/backup.sh -M -h 172.20.1.53 -d blog"
+0 5 * * *  /bin/bash -c "/home/backup_user/backup.sh -m -h 172.20.1.16 -d mongo_db"
+30 3 * * *  /bin/bash -c "/home/backup_user/backup.sh -M -h 172.20.1.53 -d mysql_db"
 ```
 
 * ensure that os user has permission to write in target folder
@@ -43,15 +43,15 @@ database types:
 
 1- .pgpass sample 
 ```
-192.168.1.1:5432:test_db:user:password
-192.168.1.1:5433:another_test_db:user:password
-192.168.1.2:5434:also_test_db:user:password
+172.20.1.12:5432:db:user:password
+172.20.1.3:5433:anotherdb:user:password
+172.20.1.18:5434:another_postgres_db:user:password
 ```
 
 2- .my.cnf sample 
 ```
 [mysqldump]
-host = 192.168.1.1
+host = 172.20.1.53
 port = 3306
 user = backup
 password = yourpassword
